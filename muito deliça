@@ -1,0 +1,24 @@
+local sexist = coroutine.create(function()
+
+    game["Run Service"].RenderStepped:Connect(function()
+
+        game.Workspace.FallenPartsDestroyHeight = 0
+        local sex = coroutine.create(function()
+    game["Run Service"].RenderStepped:Connect(function()
+
+                game["Run Service"].Heartbeat:Wait()
+                game.Players.LocalPlayer.Character.Humanoid.HipHeight = game.Players.LocalPlayer.Character.Humanoid.HipHeight + 0.09
+                game["Run Service"].Heartbeat:Connect(function()
+                    for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                        if v:IsA("Accessory") then
+                            v.Handle.Velocity = Vector3.new(30,0,0)
+                        end)
+                    end
+                end)
+                game.Players.LocalPlayer.Character.Humanoid.HipHeight = game.Players.LocalPlayer.Character.Humanoid.HipHeight - 0.09
+            end
+        end)
+        coroutine.resume(sex)
+    end)
+end)
+coroutine.resume(sexist)
